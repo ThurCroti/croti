@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>CROTI | Portfolio CMS</title>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css?v=20260823-2">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header class="admin-header">
+        <a class="admin-logo" href="./index.html">CROTI<span>.</span><small>CMS</small></a>
+        <div class="admin-header-actions">
+            <a class="view-site-link" href="./index.html" target="_blank" rel="noopener">Ver portfólio ↗</a>
+            <div class="admin-session" id="admin-session" hidden>
+                <span id="admin-email"></span>
+                <button id="logout-button" class="button button-ghost button-small" type="button">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <section id="setup-state" class="setup-layout" hidden>
+            <div class="setup-copy">
+                <p class="eyebrow">BACKEND AINDA NÃO CONECTADO</p>
+                <h1>Conecte o seu<br>Supabase.</h1>
+                <p>O CMS já está pronto. Complete estas quatro etapas uma única vez para liberar login, banco e uploads.</p>
+            </div>
+            <div class="panel setup-steps">
+                <ol>
+                    <li><span>01</span><div><strong>Crie um projeto Supabase</strong><p>Use um projeto dedicado ao portfólio.</p></div></li>
+                    <li><span>02</span><div><strong>Execute o schema</strong><p>Abra o SQL Editor e rode o arquivo completo.</p></div></li>
+                    <li><span>03</span><div><strong>Preencha a configuração</strong><p>Copie a Project URL e a chave anon para <code>supabase-config.js</code>.</p></div></li>
+                    <li><span>04</span><div><strong>Autorize seu usuário</strong><p>Crie o usuário e adicione seu UUID à tabela <code>admins</code>.</p></div></li>
+                </ol>
+                <div class="setup-actions">
+                    <a class="button button-primary" href="./supabase-schema.sql" download>Baixar schema SQL</a>
+                    <a class="button button-ghost" href="./supabase-config.js" target="_blank">Ver configuração</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="login-state" class="login-layout" hidden>
+            <div class="login-copy">
+                <p class="eyebrow">PAINEL PRIVADO</p>
+                <h1>Seu portfólio,<br>sem editar código.</h1>
+                <p>Entre para administrar trabalhos, clientes, depoimentos e a publicação do site.</p>
+            </div>
+
+            <form id="login-form" class="panel form-panel">
+                <div class="panel-heading compact">
+                    <div><p class="eyebrow">ADMIN ACCESS</p><h2>Entrar</h2></div>
+                    <span class="secure-badge">● SECURE</span>
+                </div>
+                <label for="login-email">E-mail</label>
+                <input id="login-email" name="email" type="email" autocomplete="username" required>
+                <label for="login-password">Senha</label>
+                <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+                <button class="button button-primary" type="submit">Entrar no painel</button>
+                <p id="login-status" class="form-status" role="status"></p>
+            </form>
+        </section>
+
+        <section id="dashboard-state" class="dashboard" hidden>
+            <div class="dashboard-heading">
+                <div>
+                    <p class="eyebrow">PORTFOLIO CONTROL CENTER</p>
+                    <h1>Gerenciar conteúdo</h1>
+                    <p class="dashboard-intro">Publique, edite e organize tudo que aparece no site.</p>
+                </div>
+                <div class="dashboard-quick-actions">
+                    <button class="button button-ghost" type="button" data-create="testimonial">+ Depoimento</button>
+                    <button class="button button-ghost" type="button" data-create="client">+ Cliente</button>
+                    <button class="button button-primary" type="button" data-create="video">+ Novo trabalho</button>
+                </div>
+            </div>
+
+            <section class="admin-summary" aria-label="Resumo do conteúdo">
+                <article><span>TRABALHOS</span><strong id="summary-videos">00</strong><small id="summary-videos-published">0 publicados</small></article>
+                <article><span>CLIENTES</span><strong id="summary-clients">00</strong><small id="summary-clients-published">0 publicados</small></article>
+                <article><span>DEPOIMENTOS</span><strong id="summary-testimonials">00</strong><small id="summary-testimonials-published">0 publicados</small></article>
+                <article class="summary-status"><span>BACKEND</span><strong><i></i> ONLINE</strong><small>Supabase conectado</small></article>
+            </section>
+
+            <nav class="admin-tabs" aria-label="Áreas do painel">
+                <button class="is-active" type="button" data-admin-tab="analytics" aria-selected="true">Dashboard</button>
+                <button type="button" data-admin-tab="videos" aria-selected="false">Trabalhos <span id="tab-video-count">0</span></button>
+                <button type="button" data-admin-tab="clients" aria-selected="false">Clientes <span id="tab-client-count">0</span></button>
+                <button type="button" data-admin-tab="testimonials" aria-selected="false">Depoimentos <span id="tab-testimonial-count">0</span></button>
+                <button type="button" data-admin-tab="settings" aria-selected="false">Configurações</button>
+            </nav>
+
+            <div class="dashboard-content">
+                <!-- PANEL: ANALYTICS (GAMIFIED HIGH-TECH DASHBOARD) -->
+                <section class="admin-panel is-active" data-admin-panel="analytics">
+                    <!-- GAMIFIED HERO BANNER -->
+                    <div class="gamified-hero-banner">
+                        <div class="gamified-hero-top">
+                            <div class="gamified-rank-badge">
+                                <span class="rank-icon">⚡</span>
+                                <div>
+                                    <span class="rank-title">NÍVEL 05 • PERFORMANCE MASTER</span>
+                                    <p class="rank-sub">Seu portfólio está no Top 5% de engajamento do mês</p>
+                                </div>
+                            </div>
+                            <div class="gamified-score-pill">
+                                <span class="score-label">PONTUAÇÃO DE IMPACTO</span>
+                                <strong id="gamified-xp-score">2,840 <small>XP</small></strong>
+                            </div>
+                        </div>
+
+                        <div class="gamified-progress-container">
+                            <div class="gamified-progress-bar">
+                                <div class="gamified-progress-fill" id="gamified-xp-bar" style="width: 78%;"></div>
+                            </div>
+                            <div class="gamified-progress-info">
+                                <span id="gamified-xp-next">780 XP para desbloquear NÍVEL 06 (LENDÁRIO)</span>
+                                <span>Meta Mensal: 3,500 XP</span>
+                            </div>
+                        </div>
+
+                        <!-- GAMIFIED ACHIEVEMENTS BADGES -->
+                        <div class="gamified-badges-row">
+                            <div class="gamified-badge is-unlocked">
+                                <span class="badge-icon">🏆</span>
+                                <div class="badge-text">
+                                    <strong>High Retention</strong>
+                                    <small>Retenção &gt; 60%</small>
+                                </div>
+                            </div>
+                            <div class="gamified-badge is-unlocked">
+                                <span class="badge-icon">🚀</span>
+                                <div class="badge-text">
+                                    <strong>Tráfego Turbo</strong>
+                                    <small>+15% acessos</small>
+                                </div>
+                            </div>
+                            <div class="gamified-badge is-unlocked">
+                                <span class="badge-icon">⚡</span>
+                                <div class="badge-text">
+                                    <strong>Conversão WA</strong>
+                                    <small>CTR ativo</small>
+                                </div>
+                            </div>
+                            <div class="gamified-badge is-unlocked">
+                                <span class="badge-icon">🎥</span>
+                                <div class="badge-text">
+                                    <strong>Showcase Ativo</strong>
+                                    <small>Grade Completa</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- METRICS GRID -->
+                    <div class="library-heading" style="margin-top: 2rem;">
+                        <div><p class="eyebrow">REAL-TIME METRICS</p><h2>Painel de Desempenho</h2></div>
+                    </div>
+                    
+                    <div class="analytics-grid">
+                        <article class="analytics-card">
+                            <div class="card-head">
+                                <h3>Visitas ao Site</h3>
+                                <span class="card-icon">👁️</span>
+                            </div>
+                            <strong id="analytics-pageviews">0</strong>
+                            <div class="card-foot">
+                                <span id="analytics-pageviews-compare" class="trend-pill">-- vs. mês passado</span>
+                            </div>
+                        </article>
+                        
+                        <article class="analytics-card">
+                            <div class="card-head">
+                                <h3>Acessos a Vídeos</h3>
+                                <span class="card-icon">▶️</span>
+                            </div>
+                            <strong id="analytics-videoviews">0</strong>
+                            <div class="card-foot">
+                                <span id="analytics-videoviews-compare" class="trend-pill">-- vs. mês passado</span>
+                            </div>
+                        </article>
+                        
+                        <article class="analytics-card">
+                            <div class="card-head">
+                                <h3>Cliques de Contato (WA)</h3>
+                                <span class="card-icon">💬</span>
+                            </div>
+                            <strong id="analytics-clicks">0</strong>
+                            <div class="card-foot">
+                                <span id="analytics-clicks-compare" class="trend-pill">-- vs. mês passado</span>
+                            </div>
+                        </article>
+                        
+                        <article class="analytics-card">
+                            <div class="card-head">
+                                <h3>Média de Retenção</h3>
+                                <span class="card-icon">🔥</span>
+                            </div>
+                            <strong id="analytics-retention">0%</strong>
+                            <div class="card-foot">
+                                <span class="retention-pill">Em vídeos expandidos</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- INTERACTIVE CHARTS SECTION (CHART.JS NEON GRAPHICS) -->
+                    <div class="library-heading" style="margin-top: 2.5rem;">
+                        <div><p class="eyebrow">ANALYTICS VISUALIZATION</p><h2>Gráficos de Tráfego &amp; Formatos</h2></div>
+                        <div class="chart-period-tabs">
+                            <button type="button" class="chart-tab-btn is-active" data-period="7d">7 Dias</button>
+                            <button type="button" class="chart-tab-btn" data-period="30d">30 Dias</button>
+                            <button type="button" class="chart-tab-btn" data-period="12m">12 Meses</button>
+                        </div>
+                    </div>
+
+                    <div class="charts-two-col">
+                        <!-- MAIN LINE / AREA CHART -->
+                        <div class="chart-card chart-card-main">
+                            <div class="chart-head-info">
+                                <div>
+                                    <h3>Acessos ao Site vs. Visualizações de Vídeo</h3>
+                                    <p>Comparativo em tempo real de reproduções e acessos</p>
+                                </div>
+                            </div>
+                            <div class="chart-canvas-wrapper">
+                                <canvas id="chart-traffic-line"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- DOUGHNUT CHART -->
+                        <div class="chart-card chart-card-pie">
+                            <div class="chart-head-info">
+                                <div>
+                                    <h3>Engajamento por Categoria</h3>
+                                    <p>Distribuição de consumo de mídia</p>
+                                </div>
+                            </div>
+                            <div class="chart-canvas-wrapper">
+                                <canvas id="chart-categories-donut"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DAILY QUESTS & MILESTONES -->
+                    <div class="library-heading" style="margin-top: 2.5rem;">
+                        <div><p class="eyebrow">COMMANDER QUESTS</p><h2>Desafios &amp; Missões de Impacto</h2></div>
+                    </div>
+
+                    <div class="quests-grid">
+                        <label class="quest-card is-completed">
+                            <input type="checkbox" checked disabled>
+                            <span class="quest-checkbox-custom">✓</span>
+                            <div class="quest-info">
+                                <strong>Manter vídeos 16:9 no topo do catálogo</strong>
+                                <p>Garante alinhamento perfeito da grade inicial do site.</p>
+                            </div>
+                            <span class="quest-xp-reward">+200 XP</span>
+                        </label>
+
+                        <label class="quest-card" id="quest-wa-card">
+                            <input type="checkbox" id="chk-quest-wa">
+                            <span class="quest-checkbox-custom"></span>
+                            <div class="quest-info">
+                                <strong>Configurar número oficial do WhatsApp</strong>
+                                <p>Permite rastreamento direto de cliques de conversão.</p>
+                            </div>
+                            <span class="quest-xp-reward">+300 XP</span>
+                        </label>
+
+                        <label class="quest-card" id="quest-vsl-card">
+                            <input type="checkbox" id="chk-quest-vsl">
+                            <span class="quest-checkbox-custom"></span>
+                            <div class="quest-info">
+                                <strong>Cadastrar Vídeo Destaque na seção VSL</strong>
+                                <p>Aumenta a retenção de vendas em até 80% no Hero.</p>
+                            </div>
+                            <span class="quest-xp-reward">+500 XP</span>
+                        </label>
+
+                        <label class="quest-card" id="quest-shorts-card">
+                            <input type="checkbox" id="chk-quest-shorts">
+                            <span class="quest-checkbox-custom"></span>
+                            <div class="quest-info">
+                                <strong>Publicar pelo menos 3 trabalhos em Short Form</strong>
+                                <p>Alimenta a órbita 3D interativa de Shorts no portfólio.</p>
+                            </div>
+                            <span class="quest-xp-reward">+400 XP</span>
+                        </label>
+                    </div>
+
+                    <!-- TACTICAL INSIGHTS & RANKING -->
+                    <div class="analytics-two-col" style="margin-top: 2.5rem;">
+                        <!-- GAMIFIED PODIUM LEADERBOARD -->
+                        <div class="analytics-podium-card">
+                            <div class="library-heading">
+                                <div><p class="eyebrow">PODIUM &amp; LEADERBOARD</p><h2>Vídeos Campeões de Engajamento</h2></div>
+                            </div>
+                            <div id="analytics-top-videos-container">
+                                <ul id="analytics-top-videos" class="item-list">
+                                    <div class="empty-state">
+                                        <strong>Sem dados suficientes</strong>
+                                        <p>As visualizações do mês atual aparecerão aqui.</p>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- TACTICAL AI INSIGHTS CARD -->
+                        <div class="analytics-insights-card">
+                            <div class="library-heading">
+                                <div><p class="eyebrow">TACTICAL ANALYSIS</p><h2>Dicas &amp; Insights Inteligentes</h2></div>
+                            </div>
+                            <div class="insights-list">
+                                <div class="insight-item">
+                                    <span class="insight-icon">💡</span>
+                                    <div>
+                                        <strong>Alta Retenção Visual</strong>
+                                        <p>Seus vídeos de 16:9 possuem 40% a mais de tempo de reprodução completa. Mantenha os vídeos de maior impacto no topo do catálogo!</p>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon">🚀</span>
+                                    <div>
+                                        <strong>Taxa de Conversão WhatsApp</strong>
+                                        <p>Os visitantes que chegam via botão de CTA no centro da Hero têm 3x mais chance de iniciar conversa no WhatsApp.</p>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-icon">🎯</span>
+                                    <div>
+                                        <strong>Recomendação de Conteúdo</strong>
+                                        <p>Adicione mais 2 trabalhos na categoria Short Form para manter a seção de 3D Fan sempre dinâmica.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="admin-panel" data-admin-panel="videos">
+                    <div class="library-heading">
+                        <div><p class="eyebrow">MEDIA LIBRARY</p><h2>Trabalhos e vídeos</h2></div>
+                        <button class="button button-primary" type="button" data-create="video">Adicionar trabalho</button>
+                    </div>
+
+                    <form id="video-form" class="panel editor-form" hidden>
+                        <div class="panel-heading">
+                            <div><p class="eyebrow" id="video-form-eyebrow">NOVO CONTEÚDO</p><h2 id="video-form-title">Novo trabalho</h2></div>
+                            <button class="icon-button" type="button" data-close-form="video" aria-label="Fechar formulário">×</button>
+                        </div>
+                        <div class="form-grid form-grid-three">
+                            <div class="field field-span-2"><label for="video-title">Título</label><input id="video-title" name="title" maxlength="100" required></div>
+                            <div class="field"><label for="video-year">Ano</label><input id="video-year" name="year" type="number" min="2000" max="2100" value="2026" required></div>
+                            <div class="field"><label for="video-client">Cliente</label><input id="video-client" name="client" maxlength="100"></div>
+                            <div class="field"><label for="video-category">Seção do site</label><select id="video-category" name="category" required><option value="featured">Long Form (Cinematic Stories)</option><option value="short">Short Form (Shorts Fan 3D)</option><option value="vsl">Showreel / VSL (Vídeo Principal Destaque)</option></select></div>
+                            <div class="field"><label for="video-aspect">Formato</label><select id="video-aspect" name="aspect"><option value="horizontal">Horizontal 16:9</option><option value="vertical">Vertical 9:16</option></select></div>
+                            <div class="field field-wide"><label for="video-description">Descrição</label><textarea id="video-description" name="description" maxlength="500" rows="3"></textarea></div>
+                            <div class="field field-span-2"><label for="video-services">Serviços <span>separados por vírgula</span></label><input id="video-services" name="services" placeholder="Editing, Color, Motion Design"></div>
+                            <div class="field"><label for="video-order">Ordem</label><input id="video-order" name="sort_order" type="number" min="0" value="0" required></div>
+                            <label class="check-field"><input name="published" type="checkbox" checked><span>Publicado no site</span></label>
+                            <div class="field field-wide"><label for="video-url">Link do Vídeo <span>Cloudflare (MP4/WebM)</span></label><input id="video-url" name="video_url" type="url" placeholder="https://..." required></div>
+                        </div>
+                        <div class="form-actions"><button class="button button-ghost" type="button" data-close-form="video">Cancelar</button><button id="video-submit" class="button button-primary" type="submit">Salvar trabalho</button></div>
+
+                        <p id="video-status" class="form-status" role="status"></p>
+                    </form>
+
+                    <div id="empty-video-library" class="empty-state" hidden><p>Nenhum trabalho cadastrado.</p></div>
+                    <div id="video-list" class="content-list"></div>
+                </section>
+
+                <section class="admin-panel" data-admin-panel="clients" hidden>
+                    <div class="library-heading">
+                        <div><p class="eyebrow">COLLABORATIONS</p><h2>Clientes verificados</h2></div>
+                        <button class="button button-primary" type="button" data-create="client">Adicionar cliente</button>
+                    </div>
+
+                    <form id="client-form" class="panel editor-form" hidden>
+                        <div class="panel-heading">
+                            <div><p class="eyebrow" id="client-form-eyebrow">NOVO PERFIL</p><h2 id="client-form-title">Novo cliente</h2></div>
+                            <button class="icon-button" type="button" data-close-form="client" aria-label="Fechar formulário">×</button>
+                        </div>
+                        <div class="form-grid form-grid-three">
+                            <div class="field field-span-2"><label for="client-name">Nome</label><input id="client-name" name="name" maxlength="100" required></div>
+                            <div class="field"><label for="client-platform">Plataforma</label><select id="client-platform" name="platform" required><option value="instagram">Instagram</option><option value="youtube">YouTube</option><option value="tiktok">TikTok</option></select></div>
+                            <div class="field"><label for="client-handle">Usuário ou canal <span>sem @</span></label><input id="client-handle" name="instagram_handle" maxlength="60" required></div>
+                            <div class="field field-span-2"><label for="client-profile-url">Link do perfil ou canal</label><input id="client-profile-url" name="instagram_url" type="url" placeholder="https://instagram.com/usuario" maxlength="300" required></div>
+                            <div class="field"><label for="client-followers">Seguidores ou inscritos</label><input id="client-followers" name="followers_count" type="number" min="0" value="0" required></div>
+                            <div class="field"><label for="client-order">Ordem</label><input id="client-order" name="sort_order" type="number" min="0" value="0" required></div>
+                            <label class="check-field"><input name="published" type="checkbox" checked><span>Publicado no site</span></label>
+                            <div class="verified-field"><span class="admin-verified-badge">✓</span><span>Selo verificado ativo</span></div>
+                            <div class="field field-wide file-field"><label for="client-profile-file">Foto de perfil <span>JPG, PNG ou WebP</span></label><input id="client-profile-file" name="profile" type="file" accept="image/jpeg,image/png,image/webp"><small id="client-file-note">Opcional; sem foto o site usa as iniciais.</small></div>
+                        </div>
+                        <div class="form-actions"><button class="button button-ghost" type="button" data-close-form="client">Cancelar</button><button id="client-submit" class="button button-primary" type="submit">Salvar cliente</button></div>
+                        <p id="client-status" class="form-status" role="status"></p>
+                    </form>
+
+                    <div id="empty-client-library" class="empty-state" hidden><p>Nenhum cliente cadastrado.</p></div>
+                    <div id="client-list" class="content-list"></div>
+                </section>
+
+                <section class="admin-panel" data-admin-panel="testimonials" hidden>
+                    <div class="library-heading">
+                        <div><p class="eyebrow">SOCIAL PROOF</p><h2>Depoimentos</h2></div>
+                        <button class="button button-primary" type="button" data-create="testimonial">Adicionar depoimento</button>
+                    </div>
+
+                    <form id="testimonial-form" class="panel editor-form" hidden>
+                        <div class="panel-heading">
+                            <div><p class="eyebrow" id="testimonial-form-eyebrow">NOVO REVIEW</p><h2 id="testimonial-form-title">Novo depoimento</h2></div>
+                            <button class="icon-button" type="button" data-close-form="testimonial" aria-label="Fechar formulário">×</button>
+                        </div>
+                        <div class="form-grid form-grid-three">
+                            <div class="field field-span-2"><label for="testimonial-name">Nome</label><input id="testimonial-name" name="name" maxlength="100" required></div>
+                            <div class="field"><label for="testimonial-role">Cargo / identificação</label><input id="testimonial-role" name="role" maxlength="120" placeholder="CREATOR / YOUTUBE"></div>
+                            <div class="field field-wide"><label for="testimonial-quote">Depoimento</label><textarea id="testimonial-quote" name="quote" minlength="10" maxlength="600" rows="5" required></textarea></div>
+                            <div class="field"><label for="testimonial-order">Ordem</label><input id="testimonial-order" name="sort_order" type="number" min="0" value="0" required></div>
+                            <label class="check-field"><input name="published" type="checkbox" checked><span>Publicado no site</span></label>
+                            <div class="field field-wide file-field"><label for="testimonial-profile-file">Foto do cliente <span>opcional</span></label><input id="testimonial-profile-file" name="profile" type="file" accept="image/jpeg,image/png,image/webp"><small id="testimonial-file-note">Sem foto, o site mostra as iniciais.</small></div>
+                        </div>
+                        <div class="form-actions"><button class="button button-ghost" type="button" data-close-form="testimonial">Cancelar</button><button id="testimonial-submit" class="button button-primary" type="submit">Salvar depoimento</button></div>
+                        <p id="testimonial-status" class="form-status" role="status"></p>
+                    </form>
+
+                    <div id="empty-testimonial-library" class="empty-state" hidden><p>Nenhum depoimento cadastrado.</p></div>
+                    <div id="testimonial-list" class="content-list testimonial-admin-list"></div>
+                </section>
+                <!-- PANEL: SETTINGS -->
+                <section class="admin-panel" data-admin-panel="settings">
+                    <div class="library-heading">
+                        <div><p class="eyebrow">SYSTEM SETTINGS</p><h2>Configurações do Site</h2></div>
+                    </div>
+                    
+                    <form id="settings-form" class="panel form-panel">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="setting-whatsapp">Seu Número de WhatsApp</label>
+                                <input id="setting-whatsapp" name="whatsapp_number" type="tel" placeholder="Ex: 5511999999999" required>
+                                <span class="field-note">Com código do país e DDD (apenas números). Padrão: 55.</span>
+                            </div>
+                            <div class="field">
+                                <label for="setting-pixel">Facebook Pixel ID</label>
+                                <input id="setting-pixel" name="facebook_pixel_id" type="text" placeholder="Ex: 123456789012345">
+                                <span class="field-note">Opcional. Ativa automaticamente os eventos de PageView.</span>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <p id="settings-status" class="form-status" role="status"></p>
+                            <button type="submit" class="button button-primary">Salvar configurações</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <template id="video-card-template">
+        <article class="content-card">
+            <div class="content-preview video-preview"><video muted playsinline preload="metadata"></video><span class="content-state"></span></div>
+            <div class="content-copy"><p class="content-meta"></p><h3></h3><p class="content-subtitle"></p></div>
+            <div class="content-actions"><button class="button button-ghost edit-button" type="button">Editar</button><button class="icon-action order-up-button" type="button" aria-label="Mover para cima">↑</button><button class="icon-action order-down-button" type="button" aria-label="Mover para baixo">↓</button><button class="button button-ghost toggle-button" type="button"></button><button class="button button-danger delete-button" type="button">Excluir</button></div>
+        </article>
+    </template>
+
+    <template id="client-card-template">
+        <article class="content-card">
+            <div class="content-preview avatar-preview"><img alt=""><span class="admin-verified-badge">✓</span><span class="content-state"></span></div>
+            <div class="content-copy"><p class="content-meta"></p><h3></h3><p class="content-subtitle"></p></div>
+            <div class="content-actions"><button class="button button-ghost edit-button" type="button">Editar</button><button class="icon-action order-up-button" type="button" aria-label="Mover para cima">↑</button><button class="icon-action order-down-button" type="button" aria-label="Mover para baixo">↓</button><button class="button button-ghost toggle-button" type="button"></button><button class="button button-danger delete-button" type="button">Excluir</button></div>
+        </article>
+    </template>
+
+    <template id="testimonial-card-template">
+        <article class="content-card testimonial-admin-card">
+            <div class="content-preview avatar-preview"><span class="avatar-initials"></span><img alt=""><span class="content-state"></span></div>
+            <div class="content-copy"><p class="content-meta"></p><h3></h3><blockquote></blockquote></div>
+            <div class="content-actions"><button class="button button-ghost edit-button" type="button">Editar</button><button class="icon-action order-up-button" type="button" aria-label="Mover para cima">↑</button><button class="icon-action order-down-button" type="button" aria-label="Mover para baixo">↓</button><button class="button button-ghost toggle-button" type="button"></button><button class="button button-danger delete-button" type="button">Excluir</button></div>
+        </article>
+    </template>
+
+    <div id="confirm-overlay" class="confirm-overlay" hidden>
+        <div class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+            <p class="eyebrow">AÇÃO PERMANENTE</p>
+            <h2 id="confirm-title">Excluir este item?</h2>
+            <p id="confirm-description">O registro e seus arquivos serão removidos do Supabase.</p>
+            <div class="confirm-actions"><button id="cancel-delete" class="button button-ghost" type="button">Cancelar</button><button id="confirm-delete" class="button button-danger" type="button">Excluir definitivamente</button></div>
+        </div>
+    </div>
+
+    <div id="admin-toast" class="admin-toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="./vendor/supabase.min.js"></script>
+    <script src="./vendor/tus.min.js"></script>
+    <script src="./vendor/browser-globals.js"></script>
+    <script src="./supabase-config.js?v=20260821-1"></script>
+    <script src="./cms.js?v=20260821-4"></script>
+    <script src="./admin.js?v=20260821-7"></script>
+</body>
+
+</html>
