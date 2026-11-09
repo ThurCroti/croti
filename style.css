@@ -1,13 +1,27 @@
 :root {
-    --bg-dark: #050505;  /* Initial Deep premium dark (almost black) */
-    --bg-light: #f4f4f0; /* Premium off-white/sand color for portfolio */
-    --topo-dark-color: rgba(212, 255, 20, 0.05); /* Neon Green for Dark Background (C7 Brand) */
-    --topo-light-color: rgba(0, 0, 0, 0.06); /* Subtle dark grey for White Background */
-    --accent-neon: #ccff00; /* Vibrant neon greenish-yellow */
-    --text-white: #f5f5f5; /* Pure white/light grey */
-    --font-logo: 'Syncopate', sans-serif;
-    --font-marquee: 'Clash Display', sans-serif;
-    --font-signature: 'Great Vibes', cursive;
+    color-scheme: dark;
+    --color-lime: #ccff00;
+    --color-lime-hover: #b8e600;
+    --color-lime-soft: rgba(204, 255, 0, 0.1);
+    --color-lime-glow: rgba(204, 255, 0, 0.28);
+    --bg-deep: #050505;
+    --bg-dark: #0a0a0a;
+    --bg-light: #111111;
+    --surface: #111111;
+    --surface-raised: #171717;
+    --surface-hover: #1d1d1d;
+    --border-subtle: rgba(255, 255, 255, 0.11);
+    --border-strong: rgba(255, 255, 255, 0.2);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1a1;
+    --text-tertiary: #737373;
+    --topo-dark-color: rgba(204, 255, 0, 0.055);
+    --topo-light-color: rgba(255, 255, 255, 0.035);
+    --accent-neon: var(--color-lime);
+    --text-white: var(--text-primary);
+    --font-logo: 'Inter', sans-serif;
+    --font-marquee: 'Inter', sans-serif;
+    --font-signature: 'Inter', sans-serif;
     --site-header-height: 88px;
 }
 
@@ -50,8 +64,9 @@ html {
    GLOBAL UNIFIED BACKGROUND & TOPOGRAPHIC
    ========================================= */
 body {
-    /* Set initial states for GSAP to tween later */
     background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
     --topo-dark-opacity: 1;
     --topo-light-opacity: 0;
     
@@ -72,20 +87,27 @@ body::before, body::after {
     transition: opacity 0.1s ease;
 }
 
-/* Dark Mode Topo (Default visible) */
 body::before {
-    background-image: repeating-radial-gradient(circle at 30% 40%, transparent 0, transparent 40px, var(--topo-dark-color) 40px, var(--topo-dark-color) 41px),
-                      repeating-radial-gradient(circle at 70% 60%, transparent 0, transparent 50px, var(--topo-dark-color) 50px, var(--topo-dark-color) 51px);
-    animation: topoDriftGlobal 70s linear infinite;
-    opacity: var(--topo-dark-opacity);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(var(--topo-light-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--topo-light-color) 1px, transparent 1px),
+        linear-gradient(rgba(204, 255, 0, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(204, 255, 0, 0.018) 1px, transparent 1px);
+    background-size: 64px 64px, 64px 64px, 256px 256px, 256px 256px;
+    opacity: 0.62;
 }
 
-/* Light Mode Topo (Default hidden) */
 body::after {
-    background-image: repeating-radial-gradient(circle at 30% 40%, transparent 0, transparent 40px, var(--topo-light-color) 40px, var(--topo-light-color) 41px),
-                      repeating-radial-gradient(circle at 70% 60%, transparent 0, transparent 50px, var(--topo-light-color) 50px, var(--topo-light-color) 51px);
-    animation: topoDriftGlobal2 90s linear infinite;
-    opacity: var(--topo-light-opacity);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(204, 255, 0, 0.055), transparent 28rem),
+        radial-gradient(circle at 88% 72%, rgba(204, 255, 0, 0.035), transparent 34rem);
+    opacity: 1;
 }
 
 @keyframes topoDriftGlobal {
@@ -3717,4 +3739,634 @@ body, html {
 
 .like-button.liked svg {
     fill: #ff3366;
+}
+
+/* =========================================
+   CROTI UNIFIED TECH THEME — 2026
+   Visual-only layer. Existing layout and interactions remain unchanged.
+   ========================================= */
+body,
+button,
+input,
+select,
+textarea {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+::selection {
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 4px;
+}
+
+.header {
+    color: var(--text-primary);
+}
+
+.announcement-bar {
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.site-nav {
+    background: rgba(5, 5, 5, 0.9);
+    border-color: var(--border-subtle);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
+}
+
+.logo,
+.site-nav-links a {
+    color: var(--text-primary);
+}
+
+.site-nav-links a {
+    opacity: 0.68;
+}
+
+.site-nav-links a:hover,
+.site-nav-links a[aria-current="page"] {
+    color: var(--color-lime);
+    opacity: 1;
+}
+
+.lang-toggle-btn {
+    border-color: var(--border-strong);
+    background: rgba(17, 17, 17, 0.78);
+    color: var(--text-secondary);
+}
+
+.site-nav-cta,
+.hero-cta-button,
+.submit-btn,
+.floating-wa-btn,
+.magnetic-btn {
+    border: 1px solid var(--color-lime);
+    border-radius: 6px;
+    background: var(--color-lime);
+    color: var(--bg-deep);
+    box-shadow: 0 0 22px rgba(204, 255, 0, 0.16);
+}
+
+.site-nav-cta:hover,
+.hero-cta-button:hover,
+.submit-btn:hover,
+.floating-wa-btn:hover,
+.magnetic-btn:hover {
+    background: var(--color-lime-hover);
+    color: var(--bg-deep);
+    box-shadow: 0 0 30px rgba(204, 255, 0, 0.28);
+}
+
+.hero-master-pin {
+    background: var(--bg-deep) !important;
+}
+
+.hero-master-pin::before {
+    background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.36), transparent 24%, transparent 72%, rgba(5, 5, 5, 0.32)),
+        linear-gradient(180deg, transparent 56%, rgba(5, 5, 5, 0.72) 88%, var(--bg-deep) 100%);
+}
+
+.hero-interface,
+.hero-title-eyebrow,
+.hero-title-bottom,
+.longform-kicker,
+.longform-guide,
+.longform-scroll-hint,
+.longform-progress,
+.project-media-ui,
+.project-caption,
+.short-form-kicker,
+.short-orbit-hint,
+.catalog-index,
+.catalog-card-meta,
+.partners-topline,
+.partners-slider-label,
+.partners-slider-count,
+.testimonials-topline,
+.testimonials-count,
+.faq-topline,
+.client-slide-index,
+.client-platform-label,
+.client-card-footer,
+.footer-marquee-track,
+.tiny-links {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+
+.hero-title-line,
+.longform-heading h2,
+.vsl-title,
+.short-form-title,
+.catalog-title,
+.partners-title,
+.testimonials-header h2,
+.faq-heading h2,
+.footer-title,
+.modal-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+}
+
+.signature,
+.longform-signature,
+.partners-accent,
+.testimonials-accent,
+.faq-accent,
+.footer-signature {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -0.08em;
+    color: var(--color-lime);
+}
+
+.longform-signature,
+.partners-accent,
+.testimonials-accent,
+.faq-accent {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin: 0 0 0.9rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--color-lime);
+    border-radius: 4px;
+    background: var(--color-lime);
+    color: var(--bg-deep);
+    font-size: clamp(0.58rem, 0.68vw, 0.72rem);
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-shadow: none;
+    text-transform: uppercase;
+    transform: none;
+}
+
+.longform-signature {
+    margin-top: 1.1rem;
+}
+
+.portfolio-showcase,
+.short-form-orbit,
+.video-catalog,
+.vsl-showcase,
+.partners-clients,
+.testimonials-showcase,
+.faq-showcase,
+.footer-reveal {
+    background-color: rgba(10, 10, 10, 0.97);
+    color: var(--text-primary);
+}
+
+.portfolio-showcase {
+    --longform-ink: var(--text-primary);
+    --longform-muted: rgba(255, 255, 255, 0.58);
+    --longform-line: var(--border-subtle);
+}
+
+.video-wrapper,
+.short-card-surface,
+.catalog-card-media,
+.vsl-container {
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+.video-wrapper::before,
+.short-card-surface::before,
+.catalog-card-overlay span {
+    border-radius: 4px;
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.vsl-showcase {
+    border-block: 1px solid var(--border-subtle);
+    background:
+        radial-gradient(circle at 82% 18%, rgba(204, 255, 0, 0.075), transparent 27rem),
+        rgba(10, 10, 10, 0.98);
+}
+
+.vsl-kicker,
+.vsl-title,
+.vsl-copy-group p {
+    color: var(--text-primary);
+}
+
+.vsl-kicker {
+    color: var(--color-lime);
+}
+
+.vsl-kicker span {
+    border-color: rgba(204, 255, 0, 0.42);
+}
+
+.vsl-copy-group p,
+.catalog-intro,
+.partners-desc,
+.testimonials-controls-wrap > p,
+.faq-heading > p,
+.faq-answer p,
+.catalog-card-client {
+    color: var(--text-secondary);
+}
+
+.vsl-intro-cta {
+    border: 1px solid var(--color-lime);
+    border-radius: 6px;
+    background: var(--color-lime);
+    color: var(--bg-deep);
+    box-shadow: 0 0 22px rgba(204, 255, 0, 0.14);
+}
+
+.vsl-intro-cta:hover {
+    background: transparent;
+    color: var(--color-lime);
+}
+
+.vsl-play-btn {
+    border: 1px solid var(--color-lime);
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.partners-clients,
+.testimonials-showcase,
+.faq-showcase,
+.video-catalog {
+    border-top: 1px solid var(--border-subtle);
+}
+
+.partners-topline,
+.partners-slider-shell,
+.testimonials-topline,
+.faq-topline,
+.catalog-toolbar {
+    border-color: var(--border-subtle);
+}
+
+.partners-topline,
+.partners-title,
+.partners-slider-label,
+.partners-slider-count,
+.testimonials-topline,
+.testimonials-header h2,
+.faq-topline,
+.faq-heading h2,
+.catalog-title,
+.catalog-index,
+.catalog-results-status {
+    color: var(--text-primary);
+}
+
+.partners-accent,
+.testimonials-accent,
+.faq-accent {
+    text-shadow: 0 0 24px rgba(204, 255, 0, 0.16);
+}
+
+.client-logo-card,
+.testimonial-card,
+.catalog-card,
+.faq-item {
+    border-color: var(--border-subtle);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text-primary);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+
+.client-logo-card:hover,
+.testimonial-card.is-current,
+.catalog-card:hover,
+.catalog-card:focus-visible {
+    border-color: rgba(204, 255, 0, 0.4);
+    background: var(--surface-raised);
+}
+
+.client-platform-label,
+.client-profile-name,
+.client-followers,
+.client-card-footer,
+.testimonial-card blockquote,
+.testimonial-author strong,
+.faq-question,
+.catalog-card-title,
+.catalog-card-meta {
+    color: var(--text-primary);
+}
+
+.client-profile-handle,
+.client-followers small,
+.testimonial-author small,
+.testimonial-card-top,
+.faq-index,
+.catalog-card-client {
+    color: var(--text-secondary);
+}
+
+.client-profile-avatar,
+.testimonial-avatar {
+    border-color: rgba(204, 255, 0, 0.42);
+    background: var(--surface-raised);
+}
+
+.client-verified-badge {
+    border-color: var(--surface);
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.platform-icon-instagram,
+.platform-icon-youtube rect,
+.platform-icon-tiktok {
+    fill: none;
+    stroke: var(--color-lime);
+}
+
+.platform-icon-instagram .platform-icon-dot {
+    fill: var(--color-lime);
+}
+
+.platform-icon-youtube rect {
+    fill: var(--color-lime);
+}
+
+.platform-icon-youtube path {
+    fill: var(--bg-deep);
+}
+
+.partners-slider-btn,
+.testimonials-controls button,
+.faq-toggle,
+.catalog-modal-nav button {
+    border-color: var(--border-strong);
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.partners-slider-btn:hover,
+.testimonials-controls button:hover,
+.faq-question:hover .faq-toggle,
+.catalog-modal-nav button:hover {
+    border-color: var(--color-lime);
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.faq-item {
+    border-width: 1px;
+    margin-bottom: 10px;
+    padding-inline: clamp(16px, 2vw, 28px);
+}
+
+.faq-item[open],
+.faq-item.is-open {
+    border-color: rgba(204, 255, 0, 0.34);
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.055), var(--surface) 48%);
+}
+
+.short-form-orbit {
+    background:
+        radial-gradient(circle at 50% 46%, rgba(204, 255, 0, 0.06), transparent 32rem),
+        rgba(10, 10, 10, 0.98);
+}
+
+.short-form-orbit::before {
+    border-color: rgba(204, 255, 0, 0.08);
+    opacity: 0.58;
+}
+
+.short-form-title,
+.short-form-kicker,
+.short-orbit-hint {
+    color: var(--text-primary);
+}
+
+.short-form-title span:last-child,
+.catalog-title span:last-child {
+    color: var(--color-lime);
+    -webkit-text-stroke: 0;
+}
+
+.catalog-toolbar,
+.catalog-search {
+    background: var(--surface);
+}
+
+.catalog-filter {
+    border-color: var(--border-subtle);
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.catalog-filter:hover,
+.catalog-filter.is-active,
+.catalog-filter[aria-pressed="true"] {
+    border-color: var(--color-lime);
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.catalog-filter-count {
+    border-color: currentColor;
+}
+
+.catalog-search {
+    border-color: var(--border-subtle);
+}
+
+.catalog-search input {
+    color: var(--text-primary);
+}
+
+.catalog-search input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.catalog-view-all,
+.catalog-empty button {
+    border-color: var(--color-lime);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--color-lime);
+}
+
+.catalog-view-all:hover,
+.catalog-empty button:hover {
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.catalog-modal-backdrop {
+    background: rgba(5, 5, 5, 0.9);
+}
+
+.catalog-modal-panel {
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-deep);
+    color: var(--text-primary);
+}
+
+.catalog-modal-close {
+    border-color: var(--border-strong);
+    background: var(--surface-raised);
+    color: var(--text-primary);
+}
+
+.catalog-modal-category {
+    color: var(--color-lime);
+}
+
+.catalog-modal-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.catalog-modal-actions .like-button {
+    min-width: 58px;
+    min-height: 38px;
+    justify-content: center;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    background: var(--surface-raised);
+    color: var(--color-lime);
+    cursor: pointer;
+}
+
+.catalog-modal-actions .like-button svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+}
+
+.catalog-modal-actions .like-button:hover,
+.catalog-modal-actions .like-button.liked {
+    border-color: var(--color-lime);
+    background: var(--color-lime);
+    color: var(--bg-deep);
+}
+
+.catalog-modal-details,
+.catalog-modal-description {
+    color: var(--text-secondary);
+}
+
+.footer-reveal {
+    background: var(--bg-deep);
+}
+
+.footer-card {
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+}
+
+.footer-topo-overlay {
+    opacity: 0.035;
+}
+
+.tiny-links a,
+.footer-title,
+.footer-marquee-track {
+    color: var(--text-primary);
+}
+
+.capture-modal {
+    border-color: var(--border-subtle);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.modal-desc,
+.input-group input::placeholder {
+    color: var(--text-secondary);
+}
+
+.input-group input {
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+}
+
+.like-button,
+.like-button:hover,
+.like-button.liked {
+    color: var(--color-lime);
+}
+
+.like-button.liked svg {
+    fill: var(--color-lime);
+}
+
+.floating-wa-btn {
+    border-radius: 50%;
+}
+
+@media (hover: hover) {
+    .client-logo-card:hover,
+    .catalog-card:hover,
+    .testimonial-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.36), 0 0 24px rgba(204, 255, 0, 0.05);
+    }
+}
+
+@media (max-width: 767px) {
+    .portfolio-showcase,
+    .short-form-orbit,
+    .video-catalog,
+    .vsl-showcase,
+    .partners-clients,
+    .testimonials-showcase,
+    .faq-showcase,
+    .footer-reveal {
+        width: 100%;
+    }
+
+    .site-nav {
+        padding-inline: 14px;
+    }
+
+    .client-logo-card,
+    .testimonial-card,
+    .catalog-card,
+    .footer-card,
+    .capture-modal {
+        border-radius: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after {
+        animation: none !important;
+    }
+
+    .hero-center-cta,
+    .marquee-container,
+    .signature,
+    .project-caption,
+    .short-form-card,
+    .catalog-project,
+    .testimonial-card,
+    .faq-item {
+        transition: none !important;
+    }
 }

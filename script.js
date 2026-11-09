@@ -85,12 +85,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Local placeholders keep the component complete until real CMS entries are published.
     // All short-form media is rendered from this single data source (or from the CMS below).
     const fallbackShortForms = [
-        { title: "SOCIAL CUT 01", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.png", mediaPosition: "30% 50%" },
-        { title: "SOCIAL CUT 02", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.png", mediaPosition: "42% 50%" },
-        { title: "SOCIAL CUT 03", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.png", mediaPosition: "50% 50%" },
-        { title: "SOCIAL CUT 04", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.png", mediaPosition: "58% 50%" },
-        { title: "SOCIAL CUT 05", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.png", mediaPosition: "70% 50%" },
-        { title: "SOCIAL CUT 06", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.png", mediaPosition: "50% 42%" }
+        { title: "SOCIAL CUT 01", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.jpg", mediaPosition: "30% 50%" },
+        { title: "SOCIAL CUT 02", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.jpg", mediaPosition: "42% 50%" },
+        { title: "SOCIAL CUT 03", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.jpg", mediaPosition: "50% 50%" },
+        { title: "SOCIAL CUT 04", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.jpg", mediaPosition: "58% 50%" },
+        { title: "SOCIAL CUT 05", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.jpg", mediaPosition: "70% 50%" },
+        { title: "SOCIAL CUT 06", videoUrl: "./assets/video/hero-reveal-loop-web.mp4", posterUrl: "./assets/img/hero-base-office.jpg", mediaPosition: "50% 42%" }
     ];
     let publishedPortfolioVideos = [];
 
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 vslVideo.load();
             } else {
                 const vslSec = document.getElementById("vsl-section");
-                if (vslSec) vslSec.hidden = false;
+                if (vslSec) vslSec.hidden = true;
             }
 
             document.querySelectorAll(".portfolio-track video, .short-orbit-item video").forEach((v) => observeLazyVideo(v));
@@ -460,7 +460,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             ease: "power2.out"
         }, 0.02)
         .to("body", {
-            "--topo-dark-color": "rgba(212, 255, 20, 0.05)",
+            "--topo-dark-color": "rgba(204, 255, 0, 0.05)",
             backgroundColor: "#050505",
             duration: 0.8,
             ease: "power2.inOut"
@@ -636,9 +636,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         gsap.to("body", {
-            backgroundColor: "#f4f4f0",
-            "--topo-dark-opacity": 0,
-            "--topo-light-opacity": 1,
+            backgroundColor: "#0a0a0a",
+            "--topo-dark-opacity": 1,
+            "--topo-light-opacity": 0,
             ease: "none",
             scrollTrigger: {
                 trigger: longformSection,
@@ -649,9 +649,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         gsap.to(longformSection, {
-            "--longform-ink": "#171717",
-            "--longform-muted": "rgba(23, 23, 23, 0.56)",
-            "--longform-line": "rgba(23, 23, 23, 0.2)",
+            "--longform-ink": "#ffffff",
+            "--longform-muted": "rgba(255, 255, 255, 0.58)",
+            "--longform-line": "rgba(255, 255, 255, 0.11)",
             ease: "none",
             scrollTrigger: {
                 trigger: longformSection,
@@ -729,17 +729,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!items.length || longformSection.hidden) return;
 
         gsap.to("body", {
-            backgroundColor: "#f4f4f0",
-            "--topo-dark-opacity": 0,
-            "--topo-light-opacity": 1,
+            backgroundColor: "#0a0a0a",
+            "--topo-dark-opacity": 1,
+            "--topo-light-opacity": 0,
             ease: "none",
             scrollTrigger: { trigger: longformSection, start: "top 60%", end: "top 10%", scrub: 1 }
         });
 
         gsap.to(longformSection, {
-            "--longform-ink": "#171717",
-            "--longform-muted": "rgba(23, 23, 23, 0.56)",
-            "--longform-line": "rgba(23, 23, 23, 0.2)",
+            "--longform-ink": "#ffffff",
+            "--longform-muted": "rgba(255, 255, 255, 0.58)",
+            "--longform-line": "rgba(255, 255, 255, 0.11)",
             ease: "none",
             scrollTrigger: { trigger: longformSection, start: "top 60%", end: "top 10%", scrub: 1 }
         });
@@ -1426,7 +1426,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Long Form and 3D Shorts share the same fullscreen viewer used by the catalog.
     function initShowcasePlayerTriggers() {
-        const fallbackPoster = "./assets/img/hero-base-office.png";
+        const fallbackPoster = "./assets/img/hero-base-office.jpg";
 
         const getLongformProjects = () => [...document.querySelectorAll(".project-item")].map((item, index) => {
             const video = item.querySelector("video");
@@ -1673,7 +1673,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (!project) return;
             const categoryLabel = categoryLabels.get(project.category) || String(project.category || "SELECTED WORK").replaceAll("-", " ").toUpperCase();
             const services = Array.isArray(project.services) ? project.services : [project.services].filter(Boolean);
-            activeModalProjectId = String(project.id);
+            // Os cards usam ids com prefixo ("cms-", "ai-"); o banco espera só o UUID.
+            activeModalProjectId = String(project.id).replace(/^(cms|ai)-/, "");
             modalPanel.dataset.aspect = project.aspect || "horizontal";
             modalTitle.textContent = project.title;
             modalCategory.textContent = `${categoryLabel} / ${project.year || "2026"}`;
@@ -2157,7 +2158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
 
             // WhatsApp Links
-            const waNumber = wa || "5511999999999"; // Fallback to a placeholder if none is set
+            const waNumber = wa || "5519989826903"; // Número padrão caso o painel não tenha um
             const waLink = `https://wa.me/${waNumber.replace(/\D/g, '')}`;
             
             document.querySelectorAll("[data-wa-link]").forEach(el => {

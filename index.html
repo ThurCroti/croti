@@ -4,25 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CROTI | High-End Video Editor</title>
+    <title>CROTI | AI &amp; High-End Video Editor</title>
     <meta name="description"
-        content="Edição cinematográfica, motion design e pós-produção de alto impacto por Croti.">
+        content="Edição de vídeo com IA, criativos para anúncios, motion design e pós-produção de alto impacto por Croti.">
     <meta name="theme-color" content="#050505">
-    <meta property="og:title" content="CROTI | High-End Video Editor">
-    <meta property="og:description" content="Edição cinematográfica, motion design e pós-produção de alto impacto.">
+    <meta name="color-scheme" content="dark">
+    <meta property="og:title" content="CROTI | AI &amp; High-End Video Editor">
+    <meta property="og:description" content="Edição de vídeo com IA, criativos para anúncios e pós-produção de alto impacto.">
+    <meta name="twitter:card" content="summary_large_image">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./assets/img/hero-base-office.png">
+    <meta property="og:image" content="./assets/img/hero-base-office.jpg">
 
-    <!-- Google Fonts & Fontshare -->
+    <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
+
+    <!-- Brand typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Great+Vibes&family=Syncopate:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=20260822-2">
+    <link rel="stylesheet" href="style.css?v=20260828-1">
+    <link rel="stylesheet" href="ai-showcase.css?v=20261109-4">
+    <link rel="stylesheet" href="results-showcase.css?v=20261109-2">
 </head>
 
 <body id="top">
@@ -33,12 +38,14 @@
             <div class="announcement-track" aria-hidden="true">
                 <div class="announcement-group">
                     <span>HIGH-END VIDEO EDITOR</span><i>✦</i>
+                    <span>AI VIDEO EDITOR</span><i>✦</i>
                     <span>CINEMATIC STORYTELLING</span><i>✦</i>
                     <span>SHORT FORM · LONG FORM · VSL</span><i>✦</i>
                     <span>AVAILABLE FOR SELECTED PROJECTS</span><i>✦</i>
                 </div>
                 <div class="announcement-group">
                     <span>HIGH-END VIDEO EDITOR</span><i>✦</i>
+                    <span>AI VIDEO EDITOR</span><i>✦</i>
                     <span>CINEMATIC STORYTELLING</span><i>✦</i>
                     <span>SHORT FORM · LONG FORM · VSL</span><i>✦</i>
                     <span>AVAILABLE FOR SELECTED PROJECTS</span><i>✦</i>
@@ -50,6 +57,8 @@
             <a class="logo" href="#top" aria-label="CROTI — voltar ao início">CROTI<span class="dot">.</span></a>
             <div class="site-nav-links" data-site-nav-links>
                 <a href="#top" data-nav-target="top" data-i18n="nav_home">HOME</a>
+                <a href="#results" data-nav-target="results" data-i18n="nav_results">RESULTS</a>
+                <a href="#ai-section" data-nav-target="ai-section" data-i18n="nav_ai">AI VIDEO</a>
                 <a href="#work" data-nav-target="work" data-i18n="nav_longform">LONG FORM</a>
                 <a href="#video-fan-section" data-nav-target="video-fan-section" data-i18n="nav_shorts">SHORTS</a>
                 <a href="#video-catalog" data-nav-target="video-catalog" data-i18n="nav_catalog">CATALOG</a>
@@ -94,7 +103,7 @@
         
         <!-- Hero Center CTA (Fades on Scroll) -->
         <div class="hero-center-cta">
-            <a class="hero-cta-button" href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" data-wa-link aria-label="Iniciar um projeto pelo WhatsApp" data-i18n="hero_cta">
+            <a class="hero-cta-button" href="https://wa.me/5519989826903" target="_blank" rel="noopener noreferrer" data-wa-link aria-label="Iniciar um projeto pelo WhatsApp" data-i18n="hero_cta">
                 <span>START A PROJECT</span>
                 <span class="hero-cta-arrow" aria-hidden="true">↗</span>
             </a>
@@ -123,7 +132,7 @@
         </div>
 
         <!-- Layer 2: Base Subject -->
-        <img src="./assets/img/hero-base-office.png" class="layer-base" alt="Base">
+        <img src="./assets/img/hero-base-office.jpg" class="layer-base" alt="Base">
 
         <!-- Layer 3: The Cinematic Reveal Video -->
         <video class="layer-reveal" autoplay loop muted playsinline disablepictureinpicture preload="auto">
@@ -133,6 +142,95 @@
         <!-- Layer 4: UI (Signature) -->
         <div class="signature">Croti</div>
     </div>
+
+    <!-- RESULTS — views e métricas em destaque (valores no painel: Configurações) -->
+    <section id="results" class="results-showcase" aria-labelledby="results-title">
+        <div class="results-inner">
+            <p class="results-kicker">
+                <span data-i18n="results_kicker_left">RESULTS / PERFORMANCE</span>
+                <span class="results-kicker-live"><i aria-hidden="true"></i><span data-i18n="results_kicker_right">ORGANIC REACH + PAID TRAFFIC</span></span>
+            </p>
+
+            <div class="results-grid">
+                <div class="results-headline">
+                    <svg class="results-curve" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="results-area" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#ccff00" stop-opacity="0.22"/>
+                                <stop offset="100%" stop-color="#ccff00" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="results-curve-area" d="M0 250 C 70 244, 120 236, 170 224 S 250 204, 300 176 S 380 140, 430 96 S 520 30, 600 8 L 600 260 L 0 260 Z" fill="url(#results-area)"/>
+                        <path class="results-curve-line" d="M0 250 C 70 244, 120 236, 170 224 S 250 204, 300 176 S 380 140, 430 96 S 520 30, 600 8" pathLength="1"/>
+                        <circle class="results-curve-dot" cx="600" cy="8" r="6"/>
+                    </svg>
+                    <h2 id="results-title" class="results-number"><span data-results-headline>+100M</span></h2>
+                    <p class="results-label" data-results-headline-label>VIEWS GENERATED</p>
+                    <p class="results-note" data-i18n="results_note">Views generated by content and ad creatives I edited — organic reach and paid traffic built to convert.</p>
+                </div>
+
+                <ul class="results-cards" data-results-cards aria-label="Métricas"></ul>
+            </div>
+
+            <div class="results-band">
+                <p data-i18n="results_band"><strong>PAID TRAFFIC CREATIVES</strong> BUILT TO CONVERT — HOOK, RETENTION AND CTA IN EVERY CUT.</p>
+                <a class="results-cta" href="#" target="_blank" rel="noopener noreferrer" data-results-cta>
+                    <span data-i18n="results_cta">I WANT CREATIVES THAT SELL</span>
+                    <span class="results-cta-arrow" aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faixa de clientes (gerada a partir do campo "Cliente" dos vídeos publicados) -->
+    <section id="clients-strip" class="client-strip" aria-labelledby="client-strip-label">
+        <p id="client-strip-label" class="client-strip-label" data-i18n="clients_strip_label">SELECTED CLIENTS</p>
+        <div class="client-strip-viewport">
+            <ul class="client-strip-track" data-client-strip aria-label="Clientes atendidos"></ul>
+        </div>
+    </section>
+
+    <!-- AI VIDEO EDITOR (destaque) -->
+    <section id="ai-section" class="ai-showcase" aria-labelledby="ai-title">
+        <div class="ai-showcase-inner">
+            <p class="ai-kicker">
+                <span data-i18n="ai_kicker_left">FEATURED / GENERATIVE WORKFLOW</span>
+                <span class="ai-kicker-live"><i aria-hidden="true"></i><span data-i18n="ai_kicker_right">AI-POWERED POST-PRODUCTION</span></span>
+            </p>
+
+            <div class="ai-heading-row">
+                <h2 id="ai-title" class="ai-title" data-i18n="ai_title"><span>AI VIDEO</span><span>EDITOR.</span></h2>
+                <div class="ai-intro">
+                    <p data-i18n="ai_intro">Generated scenes, AI voices, upscaled frames and a human cut on top. Every piece below was built with a generative stack — and finished with editing, rhythm and sound design.</p>
+                    <dl class="ai-stats">
+                        <div><dt data-i18n="ai_stat_projects">AI PROJECTS</dt><dd data-ai-count>00</dd></div>
+                        <div><dt data-i18n="ai_stat_tools">TOOLS IN STACK</dt><dd data-ai-tool-count>00</dd></div>
+                    </dl>
+                    <a class="ai-cta" href="#" target="_blank" rel="noopener noreferrer" data-ai-cta>
+                        <span data-i18n="ai_cta">I WANT AN AI VIDEO</span>
+                        <span class="ai-cta-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ai-stack">
+                <p class="ai-stack-label" data-i18n="ai_stack_label">AI STACK</p>
+                <ul class="ai-stack-list" data-ai-stack aria-label="Ferramentas de IA utilizadas"></ul>
+            </div>
+        </div>
+
+        <div class="ai-rail-shell">
+            <div class="ai-rail" data-ai-rail tabindex="0" aria-label="Trabalhos feitos com IA"></div>
+        </div>
+
+        <div class="ai-showcase-inner ai-rail-footer">
+            <p class="ai-rail-hint" data-i18n="ai_hint">HOVER TO PREVIEW · CLICK TO WATCH</p>
+            <div class="ai-rail-controls">
+                <button type="button" class="ai-rail-btn" data-ai-prev aria-label="Vídeos anteriores">←</button>
+                <button type="button" class="ai-rail-btn" data-ai-next aria-label="Próximos vídeos">→</button>
+            </div>
+        </div>
+    </section>
 
     <!-- Long Form — cinematic horizontal edit reel -->
     <section id="work" class="portfolio-showcase" aria-labelledby="longform-title">
@@ -262,6 +360,7 @@
         </div>
     </section>
 
+
     <!-- Searchable Video Catalog -->
     <section id="video-catalog" class="video-catalog" aria-labelledby="catalog-title">
         <div class="catalog-inner">
@@ -379,7 +478,7 @@
             </header>
 
             <div class="vsl-container">
-                <video id="vsl-video" src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                <video id="vsl-video"
                     playsinline></video>
                 <div class="vsl-overlay"></div>
                 <button id="vsl-play-btn" class="vsl-play-btn" aria-label="Reproduzir vídeo de apresentação">
@@ -455,6 +554,8 @@
                     <span class="dot">•</span>
                     <span>HIGH-END EDITING</span>
                     <span class="dot">•</span>
+                    <span>AI VIDEO</span>
+                    <span class="dot">•</span>
                     <span>MOTION DESIGN</span>
                     <span class="dot">•</span>
                     <span>AUTOMATION</span>
@@ -462,6 +563,8 @@
                     <span>CROTI STUDIOS 2026</span>
                     <span class="dot">•</span>
                     <span>HIGH-END EDITING</span>
+                    <span class="dot">•</span>
+                    <span>AI VIDEO</span>
                     <span class="dot">•</span>
                     <span>MOTION DESIGN</span>
                     <span class="dot">•</span>
@@ -514,13 +617,17 @@
     <script src="./vendor/supabase.min.js"></script>
     <script src="./vendor/browser-globals.js"></script>
     <script src="./supabase-config.js?v=20260821-1"></script>
-    <script src="./cms.js?v=20260821-4"></script>
+    <script src="./cms.js?v=20261109-1"></script>
     <script src="./catalog-data.js?v=20260822-1"></script>
     <script src="./clients-data.js?v=20260822-1"></script>
     <script src="./testimonials-data.js?v=20260822-2"></script>
     <script src="./faq-data.js?v=20260822-2"></script>
-    <script src="./i18n.js?v=20260822-4"></script>
-    <script src="./script.js?v=20260823-2" defer></script>
+    <script src="./i18n.js?v=20261109-4"></script>
+    <script src="./script.js?v=20260828-1" defer></script>
+    <script src="./ai-brands.js?v=20261109-4" defer></script>
+    <script src="./ai-showcase.js?v=20261109-4" defer></script>
+    <script src="./client-strip.js?v=20261109-1" defer></script>
+    <script src="./results-showcase.js?v=20261109-1" defer></script>
     
     <!-- Optional: Cloudflare Turnstile if needed later -->
     <!-- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->

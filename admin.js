@@ -983,7 +983,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     labels: ["Long Form (16:9)", "Short Form (9:16)", "Showreel VSL", "Comercial / Motion"],
                     datasets: [{
                         data: [longCount, shortCount, vslCount, commercialCount],
-                        backgroundColor: ["#ccff00", "#00e5ff", "#ff2a85", "#ffaa00"],
+                        backgroundColor: ["#ccff00", "#ffffff", "#a1a1a1", "#4d6600"],
                         borderWidth: 0,
                         hoverOffset: 6
                     }]

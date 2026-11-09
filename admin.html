@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
     <title>CROTI | Portfolio CMS</title>
-    <link rel="preconnect" href="https://api.fontshare.com">
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="admin.css?v=20260823-2">
+    <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css?v=20261109-2">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -359,7 +363,7 @@
                             <div class="field"><label for="video-category">Seção do site</label><select id="video-category" name="category" required><option value="featured">Long Form (Cinematic Stories)</option><option value="short">Short Form (Shorts Fan 3D)</option><option value="vsl">Showreel / VSL (Vídeo Principal Destaque)</option></select></div>
                             <div class="field"><label for="video-aspect">Formato</label><select id="video-aspect" name="aspect"><option value="horizontal">Horizontal 16:9</option><option value="vertical">Vertical 9:16</option></select></div>
                             <div class="field field-wide"><label for="video-description">Descrição</label><textarea id="video-description" name="description" maxlength="500" rows="3"></textarea></div>
-                            <div class="field field-span-2"><label for="video-services">Serviços <span>separados por vírgula</span></label><input id="video-services" name="services" placeholder="Editing, Color, Motion Design"></div>
+                            <div class="field field-span-2"><label for="video-services">Serviços <span>separados por vírgula</span></label><input id="video-services" name="services" placeholder="Edição, Motion, Higgsfield, Magnific, ElevenLabs"></div>
                             <div class="field"><label for="video-order">Ordem</label><input id="video-order" name="sort_order" type="number" min="0" value="0" required></div>
                             <label class="check-field"><input name="published" type="checkbox" checked><span>Publicado no site</span></label>
                             <div class="field field-wide"><label for="video-url">Link do Vídeo <span>Cloudflare (MP4/WebM)</span></label><input id="video-url" name="video_url" type="url" placeholder="https://..." required></div>
@@ -497,8 +501,11 @@
     <script src="./vendor/tus.min.js"></script>
     <script src="./vendor/browser-globals.js"></script>
     <script src="./supabase-config.js?v=20260821-1"></script>
-    <script src="./cms.js?v=20260821-4"></script>
+    <script src="./cms.js?v=20261109-1"></script>
     <script src="./admin.js?v=20260821-7"></script>
+    <script src="./ai-brands.js?v=20261109-4"></script>
+    <script src="./admin-ai-tools.js?v=20261109-2"></script>
+    <script src="./admin-results.js?v=20261109-1"></script>
 </body>
 
 </html>

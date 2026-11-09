@@ -30,7 +30,20 @@
         return supabaseClient.storage.from("portfolio-media").getPublicUrl(path).data.publicUrl;
     }
 
-    async function listPublished() {
+    // Várias seções pedem a mesma lista; uma única requisição atende todas.
+    let publishedRequest = null;
+
+    function listPublished() {
+        if (!publishedRequest) {
+            publishedRequest = fetchPublished().catch((error) => {
+                publishedRequest = null;
+                throw error;
+            });
+        }
+        return publishedRequest;
+    }
+
+    async function fetchPublished() {
         const supabaseClient = getClient();
         if (!supabaseClient) return [];
 

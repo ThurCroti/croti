@@ -33,9 +33,9 @@
             client: "CROTI / SELECTED WORK",
             category: "long-form",
             year: "2026",
-            thumbnail: "./assets/img/hero-base-office.png",
+            thumbnail: "./assets/img/hero-base-office.jpg",
             video: "./assets/video/hero-reveal-loop-web.mp4",
-            poster: "./assets/img/hero-base-office.png",
+            poster: "./assets/img/hero-base-office.jpg",
             description: "A cinematic long-form piece focused on narrative and visual continuity.",
             services: ["Editing", "Storytelling", "Color"],
             featured: true,
@@ -49,9 +49,9 @@
             client: "CROTI / SELECTED WORK",
             category: "vsl",
             year: "2026",
-            thumbnail: "./assets/img/hero-base-office.png",
+            thumbnail: "./assets/img/hero-base-office.jpg",
             video: "./assets/video/hero-reveal-loop-web.mp4",
-            poster: "./assets/img/hero-base-office.png",
+            poster: "./assets/img/hero-base-office.jpg",
             description: "Direct-response storytelling with clear pacing and an intentional visual hierarchy.",
             services: ["Editing", "Motion Design", "Sound Design"],
             featured: true,
@@ -81,9 +81,9 @@
             client: "CROTI / SELECTED WORK",
             category: "motion",
             year: "2026",
-            thumbnail: "./assets/img/hero-base-office.png",
+            thumbnail: "./assets/img/hero-base-office.jpg",
             video: "./assets/video/hero-reveal-loop-web.mp4",
-            poster: "./assets/img/hero-base-office.png",
+            poster: "./assets/img/hero-base-office.jpg",
             description: "A graphic motion study connecting type, transitions and editorial timing.",
             services: ["Motion Design", "Typography", "Compositing"],
             featured: true,
@@ -113,9 +113,9 @@
             client: "CROTI / SELECTED WORK",
             category: "long-form",
             year: "2026",
-            thumbnail: "./assets/img/hero-base-office.png",
+            thumbnail: "./assets/img/hero-base-office.jpg",
             video: "./assets/video/hero-reveal-loop-web.mp4",
-            poster: "./assets/img/hero-base-office.png",
+            poster: "./assets/img/hero-base-office.jpg",
             description: "A longer editorial profile shaped through controlled pacing and atmosphere.",
             services: ["Editing", "Storytelling", "Sound Design"],
             featured: true,
@@ -177,7 +177,7 @@
         return videos.map((video, index) => {
             const category = categoryAliases[video.category] || "commercial";
             const year = video.created_at ? String(new Date(video.created_at).getFullYear()) : "2026";
-            const poster = video.posterUrl || "./assets/img/hero-base-office.png";
+            const poster = video.posterUrl || "./assets/img/hero-base-office.jpg";
 
             return {
                 id: `cms-${video.id}`,

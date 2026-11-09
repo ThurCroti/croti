@@ -1,16 +1,22 @@
 :root {
-  --lime: #c8ff00;
-  --lime-soft: rgba(200, 255, 0, 0.12);
-  --ink: #080908;
-  --panel: #111311;
-  --panel-2: #171a17;
-  --line: rgba(255, 255, 255, 0.1);
-  --muted: #92988f;
-  --white: #f7f8f4;
+  color-scheme: dark;
+  --lime: #ccff00;
+  --lime-hover: #b8e600;
+  --lime-soft: rgba(204, 255, 0, 0.1);
+  --lime-glow: rgba(204, 255, 0, 0.26);
+  --deep: #050505;
+  --ink: #0a0a0a;
+  --panel: #111111;
+  --panel-2: #171717;
+  --panel-hover: #1d1d1d;
+  --line: rgba(255, 255, 255, 0.11);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --muted: #a1a1a1;
+  --white: #ffffff;
   --danger: #ff685f;
   --success: #9be43a;
-  --radius: 22px;
-  --font-display: "Arial Black", "Helvetica Neue", sans-serif;
+  --radius: 10px;
+  --font-display: Inter, "Helvetica Neue", Arial, sans-serif;
   --font-body: Inter, "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -21,7 +27,12 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  background: radial-gradient(circle at 82% 0%, rgba(200, 255, 0, 0.08), transparent 32rem), var(--ink);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.027) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.027) 1px, transparent 1px),
+    radial-gradient(circle at 82% 0%, rgba(204, 255, 0, 0.075), transparent 32rem),
+    var(--ink);
+  background-size: 64px 64px, 64px 64px, auto, auto;
   color: var(--white);
   font-family: var(--font-body);
 }
@@ -891,3 +902,303 @@ button:disabled { cursor: wait; opacity: 0.55; }
     border: 1px solid rgba(204, 255, 0, 0.2);
     flex-shrink: 0;
 }
+
+/* =========================================
+   CROTI UNIFIED ADMIN THEME — 2026
+   ========================================= */
+::selection {
+  background: var(--lime);
+  color: var(--deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.admin-header {
+  min-height: 70px;
+  border-color: var(--line);
+  background: rgba(5, 5, 5, 0.9);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+}
+
+.admin-logo {
+  color: var(--white);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+}
+
+.admin-logo span,
+.admin-logo small,
+.view-site-link,
+.eyebrow,
+.summary-status strong,
+.trend-pill.is-positive,
+.quest-xp-reward,
+.gamified-score-pill strong {
+  color: var(--lime);
+}
+
+.view-site-link {
+  border-color: var(--lime);
+}
+
+.form-panel,
+.panel,
+.admin-summary article,
+.content-card,
+.analytics-card,
+.analytics-podium-card,
+.analytics-insights-card,
+.chart-card,
+.quest-card,
+.gamified-hero-banner,
+.confirm-dialog {
+  border-color: var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.26);
+}
+
+.gamified-hero-banner {
+  border-color: rgba(204, 255, 0, 0.28);
+  background:
+    linear-gradient(135deg, rgba(204, 255, 0, 0.075), transparent 46%),
+    var(--panel);
+}
+
+.setup-steps li,
+.insight-item,
+#analytics-top-videos li,
+.gamified-badge {
+  border-color: var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.rank-icon,
+.setup-steps li > span,
+.setup-step span,
+.avatar-initials,
+.chart-tab-btn.is-active,
+.quest-card input[type="checkbox"]:checked + .quest-checkbox-custom,
+.quest-card.is-completed .quest-checkbox-custom {
+  border-radius: 6px;
+  background: var(--lime);
+  color: var(--deep);
+  box-shadow: 0 0 18px rgba(204, 255, 0, 0.18);
+}
+
+.setup-copy h1,
+.login-layout h1,
+.dashboard-heading h1,
+.rank-title,
+.analytics-card strong,
+.gamified-score-pill strong {
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+.button,
+.icon-button,
+.icon-action,
+.admin-tabs,
+.admin-tabs button,
+.chart-period-tabs,
+.chart-tab-btn,
+.secure-badge,
+.trend-pill,
+.retention-pill,
+.quest-xp-reward {
+  border-radius: 6px;
+}
+
+.button-primary {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--deep);
+  box-shadow: 0 0 22px rgba(204, 255, 0, 0.14);
+}
+
+.button-primary:hover {
+  border-color: var(--lime-hover);
+  background: var(--lime-hover);
+  box-shadow: 0 0 28px rgba(204, 255, 0, 0.24);
+}
+
+.button-ghost,
+.icon-button,
+.icon-action {
+  border-color: var(--line-strong);
+  background: transparent;
+  color: var(--white);
+}
+
+.button-ghost:hover,
+.icon-button:hover,
+.icon-action:hover:not(:disabled) {
+  border-color: var(--lime);
+  background: var(--lime-soft);
+  color: var(--lime);
+}
+
+.admin-tabs {
+  border-color: var(--line);
+  background: var(--deep);
+}
+
+.admin-tabs button {
+  color: var(--muted);
+}
+
+.admin-tabs button.is-active {
+  background: var(--lime);
+  color: var(--deep);
+}
+
+.field input,
+.field select,
+.field textarea,
+.file-field input,
+.check-field,
+.login-layout .form-panel > input,
+.chart-period-tabs {
+  border-color: var(--line);
+  border-radius: 6px;
+  background: var(--deep);
+  color: var(--white);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.login-layout .form-panel > input:focus {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px rgba(204, 255, 0, 0.08);
+}
+
+.file-field {
+  border-color: var(--line-strong);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.content-card:hover,
+.analytics-card:hover,
+.quest-card:hover,
+.gamified-badge.is-unlocked {
+  border-color: rgba(204, 255, 0, 0.34);
+  background: linear-gradient(135deg, rgba(204, 255, 0, 0.035), var(--panel) 52%);
+}
+
+.content-preview,
+.avatar-preview {
+  border-radius: 6px;
+  background: var(--panel-2);
+}
+
+.admin-verified-badge {
+  border-color: var(--panel);
+  background: var(--lime);
+  color: var(--deep);
+}
+
+.content-state,
+.secure-badge,
+.trend-pill.is-positive,
+.quest-xp-reward {
+  border-color: rgba(204, 255, 0, 0.24);
+  background: var(--lime-soft);
+  color: var(--lime);
+}
+
+.progress-track,
+.gamified-progress-bar {
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progress-track span,
+.gamified-progress-fill {
+  border-radius: 2px;
+  background: var(--lime);
+  box-shadow: 0 0 14px rgba(204, 255, 0, 0.28);
+}
+
+.chart-card,
+.analytics-card,
+.quest-card,
+.analytics-podium-card,
+.analytics-insights-card {
+  background: var(--panel);
+}
+
+.chart-tab-btn.is-active {
+  background: var(--lime);
+  color: var(--deep);
+}
+
+.admin-toast {
+  border-color: rgba(204, 255, 0, 0.34);
+  border-radius: 8px;
+  background: var(--panel-2);
+}
+
+@media (max-width: 760px) {
+  .admin-main {
+    width: min(100% - 24px, 1440px);
+  }
+
+  .admin-tabs {
+    overflow-x: auto;
+    grid-template-columns: none;
+    display: flex;
+    scrollbar-width: none;
+  }
+
+  .admin-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .admin-tabs button {
+    flex: 0 0 auto;
+  }
+
+  .dashboard-heading h1 {
+    font-size: clamp(2.25rem, 12vw, 4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Seletor de ferramentas de IA (admin-ai-tools.js) */
+.ai-pick-label { color: #c7cbc4; font-size: 0.67rem; font-weight: 850; letter-spacing: 0.11em; text-transform: uppercase; }
+.ai-pick-label span { margin-left: 6px; color: var(--muted); font-weight: 600; letter-spacing: 0.04em; text-transform: none; }
+.ai-pick-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.ai-pick { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 5px 13px 5px 5px; border: 1px solid var(--line); border-radius: 999px; background: #0a0c0a; color: #c7cbc4; font: inherit; font-size: 0.75rem; font-weight: 760; cursor: pointer; transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease; }
+.ai-pick:hover { border-color: var(--line-strong); color: var(--white); }
+.ai-pick.is-active { border-color: var(--lime); background: var(--lime-soft); color: var(--white); }
+.ai-pick.is-flag.is-active { background: var(--lime); color: var(--deep); }
+.ai-pick-logo { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--bg); color: var(--fg); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+.ai-pick-logo svg { width: 60%; height: 60%; display: block; }
+.ai-pick-logo b { font-size: 0.68rem; font-weight: 900; }
+
+/* Resultados em destaque (admin-results.js) */
+.results-admin { margin-top: 18px; }
+.results-admin-note { margin: 22px 0 12px; color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
+.results-admin-note strong { color: var(--white); }
+.results-admin-cards { display: grid; gap: 12px; }
+.results-admin-row { display: grid; grid-template-columns: 0.7fr 1fr 1fr 1fr; gap: 10px; margin: 0; padding: 14px; border: 1px solid var(--line); border-radius: 11px; background: #0a0c0a; }
+.results-admin-row legend { padding: 0 6px; color: var(--lime); font-size: 0.64rem; font-weight: 850; letter-spacing: 0.12em; }
+.results-admin-row .field label span { margin-left: 4px; color: var(--muted); font-weight: 600; letter-spacing: 0.02em; text-transform: none; }
+@media (max-width: 860px) { .results-admin-row { grid-template-columns: 1fr 1fr; } }

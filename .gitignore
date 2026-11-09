@@ -2,3 +2,7 @@ node_modules/
 test-*.js
 server.js
 .DS_Store
+._*
+.vercel
+.env*
+.claude/
