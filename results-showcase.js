@@ -120,17 +120,18 @@
                 || /(^|[^a-z])(ia|ai)([^a-z]|$)/i.test(video.title || "");
         };
 
+        // Sem nome do cliente aqui: mostra só a plataforma.
         const biggest = clients
-            .map((client) => ({ name: client.name, count: client.followersCount || Number(client.followers_count) || 0 }))
+            .map((client) => ({ platform: client.platform, count: client.followersCount || Number(client.followers_count) || 0 }))
             .sort((a, b) => b.count - a.count)[0];
         const compact = (count) => count >= 1e6 ? `${(count / 1e6).toFixed(count >= 1e7 ? 0 : 1).replace(/\.0$/, "")}M` : `${Math.round(count / 1e3)}K`;
 
         const list = [];
-        if (brands.size) list.push({ value: String(brands.size), label_pt: "MARCAS ATENDIDAS", label_en: "BRANDS SERVED", context: [...brands.values()].slice(0, 3).join(" · ") });
+        if (brands.size) list.push({ value: String(brands.size), label_pt: "MARCAS ATENDIDAS", label_en: "BRANDS SERVED", context: "CREATORS · BRANDS · ADS" });
         if (videos.length) list.push({ value: String(videos.length), label_pt: "PROJETOS PUBLICADOS", label_en: "PUBLISHED PROJECTS", context: "SHORT · LONG · VSL" });
         const aiCount = videos.filter(isAI).length;
         if (aiCount) list.push({ value: String(aiCount).padStart(2, "0"), label_pt: "CRIATIVOS COM IA", label_en: "AI CREATIVES", context: "CLAUDE · HIGGSFIELD · KLING" });
-        if (biggest && biggest.count >= 1000) list.push({ value: compact(biggest.count), label_pt: "MAIOR AUDIÊNCIA ATENDIDA", label_en: "LARGEST AUDIENCE SERVED", context: biggest.name });
+        if (biggest && biggest.count >= 1000) list.push({ value: compact(biggest.count), label_pt: "MAIOR AUDIÊNCIA ATENDIDA", label_en: "LARGEST AUDIENCE SERVED", context: biggest.platform ? String(biggest.platform).toUpperCase() : "" });
         return list.slice(0, 4);
     }
 
